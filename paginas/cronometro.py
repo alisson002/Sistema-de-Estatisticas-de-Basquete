@@ -15,7 +15,7 @@ def main():
     footer {visibility: hidden;}
     header {
         visibility: visible;
-        margin-bottom: -500px;
+        pading-bottom: -500px;
     }
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
