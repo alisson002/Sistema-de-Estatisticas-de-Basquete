@@ -289,7 +289,7 @@ def main():
             /* Responsividade para telas menores - 5% menor que as proporções originais */
             @media (max-width: 768px) {
                 html, body {
-                    margin-top: -150px; /* 5% menor que -100px original */
+                    margin-top: -140px; /* 5% menor que -100px original */
                     height: 100vh; /* Volta para 100vh no mobile */
                 }
 
@@ -392,7 +392,7 @@ def main():
                 }
                 
                 .timer-display {
-                    height: 228px; /* 5% menor que 240px original */
+                    height: 180px; /* 5% menor que 240px original */
                     border-radius: 22.8px; /* 5% menor que 24px original */
                     border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
                     margin-bottom: 15px;
