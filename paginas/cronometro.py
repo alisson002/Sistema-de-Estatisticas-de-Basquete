@@ -17,12 +17,12 @@ def main():
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
     .st-emotion-cache-gf1xsr {
-        visibility: visible;
+        visibility: hidden;
         padding-left: 380px;
         color: white;
     }
     .st-emotion-cache-arp25b {
-        visibility: visible;
+        visibility: hidden;
         padding-left: 380px;
     }
     
