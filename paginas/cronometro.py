@@ -141,7 +141,7 @@ def main():
             }
 
             html, body {
-                height: 100vh;
+                height: 85vh;
                 width: 100vw;
                 background: linear-gradient(135deg, #0e1117, #0e1117);
                 display: flex;
