@@ -387,7 +387,7 @@ def main():
                 }
 
                 .timer-text {
-                    font-size: 75px; /* 5% menor que 105px original */
+                    font-size: 85px; /* 5% menor que 105px original */
                     letter-spacing: 2.85px; /* 5% menor que 3px original */
                 }
                 
