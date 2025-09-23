@@ -297,7 +297,7 @@ def main():
                     width: 120vw; /* 5% menor que 95vw original */
                     height: auto;
                     min-height: auto;
-                    gap: 28.5px; /* 5% menor que 30px original - valores fixos para mobile */
+                    gap: 50px; /* 5% menor que 30px original - valores fixos para mobile */
                 }
                 
                 .timer-display {
