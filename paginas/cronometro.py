@@ -294,16 +294,16 @@ def main():
                 }
 
                 .container {
-                    width: 120vw; /* 5% menor que 95vw original */
+                    width: 90.25vw; /* 5% menor que 95vw original */
                     height: auto;
                     min-height: auto;
-                    gap: 50px; /* 5% menor que 30px original - valores fixos para mobile */
+                    gap: 28.5px; /* 5% menor que 30px original - valores fixos para mobile */
                 }
                 
                 .timer-display {
                     height: 285px; /* 5% menor que 300px original */
                     border-radius: 28.5px; /* 5% menor que 30px original */
-                    border: 6.65px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
+                    border: 30px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
                     margin-bottom: 19px;
                     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra fixa para mobile */
                 }
