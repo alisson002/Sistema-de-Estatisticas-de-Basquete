@@ -137,54 +137,54 @@ def main():
             }
 
             .container {
-                width: 45vw; /* 50% menor que 90vw para desktop */
-                max-width: 400px; /* 50% menor que 800px para desktop */
-                height: 45vh; /* 50% menor que 90vh para desktop */
+                width: 22.5vw; /* 75% menor que 90vw original */
+                max-width: 200px; /* 75% menor que 800px original */
+                height: 22.5vh; /* 75% menor que 90vh original */
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 20px; /* 50% menor que 40px para desktop */
+                gap: 10px; /* 75% menor que 40px original */
             }
 
             .timer-display {
                 background: #030712;
-                border-radius: 18px; /* 50% menor que 36px */
-                border: 5px solid #FFFFFF; /* Aproximadamente 50% menor que 9px */
+                border-radius: 9px; /* 75% menor que 36px original */
+                border: 2px solid #FFFFFF; /* 75% menor que 9px original */
                 width: 100%;
-                height: 187px; /* 50% menor que 375px */
+                height: 94px; /* 75% menor que 375px original */
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Ajustado proporcionalmente */
-                margin-bottom: 10px; /* 50% menor que 20px */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+                margin-bottom: 5px; /* 75% menor que 20px original */
             }
 
             .timer-text {
-                font-size: 90px; /* 50% menor que 180px */
+                font-size: 45px; /* 75% menor que 180px original */
                 font-weight: 900;
                 font-family: 'Courier New', monospace;
-                letter-spacing: 4px; /* Aproximadamente 50% menor que 9px */
+                letter-spacing: 2px; /* 75% menor que 9px original */
                 transition: color 0.3s ease;
             }
 
             .button-row {
                 display: flex;
-                gap: 20px; /* 50% menor que 40px */
-                margin-bottom: 10px; /* 50% menor que 20px */
+                gap: 10px; /* 75% menor que 40px original */
+                margin-bottom: 5px; /* 75% menor que 20px original */
             }
 
             .button-row-small {
                 display: flex;
-                gap: 15px; /* 50% menor que 30px */
-                margin-bottom: 10px; /* 50% menor que 20px */
+                gap: 7px; /* 75% menor que 30px original */
+                margin-bottom: 5px; /* 75% menor que 20px original */
             }
 
             .btn {
                 border: none;
                 border-radius: 50%;
                 font-weight: bold;
-                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Ajustado proporcionalmente */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
                 transition: all 0.2s ease;
                 cursor: pointer;
                 display: flex;
@@ -192,13 +192,13 @@ def main():
                 justify-content: center;
                 background: #FFFFFF;
                 color: black;
-                font-size: 9px; /* 50% menor que 18px */
+                font-size: 4px; /* 75% menor que 18px original */
             }
 
             .btn:hover:not(:disabled) {
                 transform: scale(1.05);
                 background: #ea580c;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ajustado */
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             }
 
             .btn:active {
@@ -211,39 +211,39 @@ def main():
             }
 
             .btn-large {
-                width: 60px; /* 50% menor que 120px */
-                height: 60px; /* 50% menor que 120px */
-                font-size: 12px; /* 50% menor que 24px */
+                width: 30px; /* 75% menor que 120px original */
+                height: 30px; /* 75% menor que 120px original */
+                font-size: 6px; /* 75% menor que 24px original */
             }
 
             .btn-play {
-                width: 70px; /* 50% menor que 140px */
-                height: 70px; /* 50% menor que 140px */
-                font-size: 14px; /* 50% menor que 28px */
-                margin: 10px 0; /* 50% menor que 20px 0 */
+                width: 35px; /* 75% menor que 140px original */
+                height: 35px; /* 75% menor que 140px original */
+                font-size: 7px; /* 75% menor que 28px original */
+                margin: 5px 0; /* 75% menor que 20px original */
             }
 
             .btn-small {
-                width: 50px; /* 50% menor que 100px */
-                height: 50px; /* 50% menor que 100px */
-                font-size: 9px; /* 50% menor que 18px */
+                width: 25px; /* 75% menor que 100px original */
+                height: 25px; /* 75% menor que 100px original */
+                font-size: 4px; /* 75% menor que 18px original */
             }
 
             .status-text {
                 text-align: center;
                 color: #9ca3af;
-                font-size: 9px; /* 50% menor que 18px */
-                margin-top: 10px; /* 50% menor que 20px */
+                font-size: 4px; /* 75% menor que 18px original */
+                margin-top: 5px; /* 75% menor que 20px original */
             }
 
             .play-icon, .pause-icon {
-                width: 24px; /* 50% menor que 48px */
-                height: 24px; /* 50% menor que 48px */
+                width: 12px; /* 75% menor que 48px original */
+                height: 12px; /* 75% menor que 48px original */
                 pointer-events: none;
             }
 
             .play-icon {
-                margin-left: 3px; /* Ajustado proporcionalmente */
+                margin-left: 1px; /* 75% menor que 6px original */
             }
 
             /* Cores do timer baseadas no tempo */
@@ -299,105 +299,109 @@ def main():
                 }
             }
 
-            /* Responsividade para celular - 15% menor que o original */
+            /* Responsividade para celular - 10% menor que o original */
             @media (max-width: 768px) {
                 .container {
-                    width: 80vw; /* 15% menor que 95vw */
-                    gap: 25px; /* 15% menor que 30px */
+                    width: 85.5vw; /* 10% menor que 95vw original */
+                    gap: 27px; /* 10% menor que 30px original */
                 }
                 
                 .timer-display {
-                    height: 255px; /* 15% menor que 300px */
-                    border-radius: 25px; /* 15% menor que 30px */
-                    border: 6px solid #f97316; /* 15% menor que 7px */
+                    height: 270px; /* 10% menor que 300px original */
+                    border-radius: 27px; /* 10% menor que 30px original */
+                    border: 6px solid #f97316; /* 10% menor que 7px original */
                 }
                 
                 .timer-text {
-                    font-size: 115px; /* 15% menor que 135px */
-                    letter-spacing: 5px; /* 15% menor que 6px */
+                    font-size: 121px; /* 10% menor que 135px original */
+                    letter-spacing: 5px; /* 10% menor que 6px original */
                 }
                 
                 .btn-large {
-                    width: 85px; /* 15% menor que 100px */
-                    height: 85px; /* 15% menor que 100px */
-                    font-size: 17px; /* 15% menor que 20px */
+                    width: 90px; /* 10% menor que 100px original */
+                    height: 90px; /* 10% menor que 100px original */
+                    font-size: 18px; /* 10% menor que 20px original */
                 }
                 
                 .btn-play {
-                    width: 102px; /* 15% menor que 120px */
-                    height: 102px; /* 15% menor que 120px */
-                    font-size: 20px; /* 15% menor que 24px */
+                    width: 108px; /* 10% menor que 120px original */
+                    height: 108px; /* 10% menor que 120px original */
+                    font-size: 22px; /* 10% menor que 24px original */
                 }
                 
                 .btn-small {
-                    width: 68px; /* 15% menor que 80px */
-                    height: 68px; /* 15% menor que 80px */
-                    font-size: 14px; /* 15% menor que 16px */
+                    width: 72px; /* 10% menor que 80px original */
+                    height: 72px; /* 10% menor que 80px original */
+                    font-size: 14px; /* 10% menor que 16px original */
                 }
                 
                 .button-row {
-                    gap: 25px; /* 15% menor que 30px */
+                    gap: 27px; /* 10% menor que 30px original */
                 }
                 
                 .button-row-small {
-                    gap: 17px; /* 15% menor que 20px */
+                    gap: 18px; /* 10% menor que 20px original */
                 }
                 
                 .play-icon, .pause-icon {
-                    width: 36px; /* Ajustado proporcionalmente */
-                    height: 36px;
+                    width: 43px; /* 10% menor que 48px original */
+                    height: 43px;
+                }
+
+                .play-icon {
+                    margin-left: 5px; /* 10% menor que 6px original */
                 }
                 
                 .status-text {
-                    font-size: 15px; /* 15% menor que 18px */
+                    font-size: 16px; /* 10% menor que 18px original */
                 }
             }
 
             @media (max-width: 480px) {
                 .timer-text {
-                    font-size: 89px; /* 15% menor que 105px */
-                    letter-spacing: 2px; /* 15% menor que 3px */
+                    font-size: 94px; /* 10% menor que 105px original */
+                    letter-spacing: 3px; /* 10% menor que 3px original (mantido mínimo) */
                 }
                 
                 .timer-display {
-                    height: 204px; /* 15% menor que 240px */
-                    border-radius: 20px; /* 15% menor que 24px */
-                    border: 4px solid #f97316; /* 15% menor que 5px */
+                    height: 216px; /* 10% menor que 240px original */
+                    border-radius: 22px; /* 10% menor que 24px original */
+                    border: 4px solid #f97316; /* 10% menor que 5px original */
                 }
                 
                 .btn-large {
-                    width: 68px; /* 15% menor que 80px */
-                    height: 68px; /* 15% menor que 80px */
-                    font-size: 15px; /* 15% menor que 18px */
+                    width: 72px; /* 10% menor que 80px original */
+                    height: 72px; /* 10% menor que 80px original */
+                    font-size: 16px; /* 10% menor que 18px original */
                 }
                 
                 .btn-play {
-                    width: 85px; /* 15% menor que 100px */
-                    height: 85px; /* 15% menor que 100px */
-                    font-size: 17px; /* 15% menor que 20px */
+                    width: 90px; /* 10% menor que 100px original */
+                    height: 90px; /* 10% menor que 100px original */
+                    font-size: 18px; /* 10% menor que 20px original */
                 }
                 
                 .btn-small {
-                    width: 59px; /* 15% menor que 70px */
-                    height: 59px; /* 15% menor que 70px */
-                    font-size: 12px; /* 15% menor que 14px */
+                    width: 63px; /* 10% menor que 70px original */
+                    height: 63px; /* 10% menor que 70px original */
+                    font-size: 13px; /* 10% menor que 14px original */
                 }
                 
                 .button-row {
-                    gap: 17px; /* 15% menor que 20px */
+                    gap: 18px; /* 10% menor que 20px original */
                 }
                 
                 .button-row-small {
-                    gap: 13px; /* 15% menor que 15px */
+                    gap: 13px; /* 10% menor que 15px original */
                 }
                 
                 .status-text {
-                    font-size: 14px; /* 15% menor que 16px */
+                    font-size: 14px; /* 10% menor que 16px original */
                 }
                 
                 .play-icon, .pause-icon {
-                    width: 30px;
-                    height: 30px;
+                    width: 43px;
+                    height: 43px;
                 }
             }
         </style>
