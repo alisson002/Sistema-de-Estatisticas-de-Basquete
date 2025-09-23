@@ -15,7 +15,7 @@ def main():
     footer {visibility: hidden;}
     header {
         visibility: visible;
-        height: 100px;
+        height: 30px;
     }
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
@@ -108,7 +108,23 @@ def main():
         position: fixed !important;
         width: 100vw !important;
     }
+    .cronometro-24-14 {
+        margin: 0 !important;
+        padding: 5px 0 !important;
+        line-height: 1.2 !important;
+    }
     </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('h1#inicio').forEach(h1 => {
+                if (h1.textContent.includes('⏱️ Cronômetro 24/14')) {
+                    h1.classList.add('cronometro-24-14');
+                }
+            });
+        }, 100);
+    });
+    </script>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     
