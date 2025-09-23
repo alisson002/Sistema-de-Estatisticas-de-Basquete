@@ -133,7 +133,7 @@ def main():
                 justify-content: center;
                 font-family: 'Arial', sans-serif;
                 overflow: hidden;
-                paddin-top: -100px;
+                margin-top: -100px;
             }
 
             .container {
