@@ -168,7 +168,7 @@ def main():
             .timer-display {
                 background: #030712;
                 border-radius: 1.26vh; /* Reduzido de 36px para 12.6px (65% menor) convertido para vh */
-                border: 0.315vh solid #4ade80; /* Verde por padrão */
+                border: 0.315vh solid #FFFFFF; /* Reduzido de 9px para 3.15px (65% menor) convertido para vh */
                 width: 100%;
                 height: 13.125vh; /* Reduzido de 375px para 131.25px (65% menor) convertido para vh */
                 display: flex;
@@ -176,23 +176,6 @@ def main():
                 justify-content: center;
                 box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6); /* Reduzido de 15px 40px para 5.25px 14px (65% menor) */
                 margin-bottom: 0.7vh; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
-                transition: all 0.3s ease;
-            }
-
-            /* Classes para diferentes cores de borda e glow */
-            .timer-display.border-green {
-                border-color: #4ade80;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1vh rgba(74, 222, 128, 0.2);
-            }
-
-            .timer-display.border-yellow {
-                border-color: #fbbf24;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1.5vh rgba(251, 191, 36, 0.4);
-            }
-
-            .timer-display.border-red {
-                border-color: #ef4444;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 2vh rgba(239, 68, 68, 0.6);
             }
 
             .timer-text {
@@ -303,24 +286,9 @@ def main():
                 .timer-display {
                     height: 285px; /* 5% menor que 300px original */
                     border-radius: 28.5px; /* 5% menor que 30px original */
-                    border: 6.65px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
+                    border: 6.65px solid #f97316; /* 5% menor que 7px original */
                     margin-bottom: 19px;
                     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra fixa para mobile */
-                }
-
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(239, 68, 68, 0.6);
                 }
                 
                 .timer-text {
@@ -394,23 +362,8 @@ def main():
                 .timer-display {
                     height: 228px; /* 5% menor que 240px original */
                     border-radius: 22.8px; /* 5% menor que 24px original */
-                    border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
+                    border: 4.75px solid #f97316; /* 5% menor que 5px original */
                     margin-bottom: 15px;
-                }
-
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(239, 68, 68, 0.6);
                 }
                 
                 .btn-large {
@@ -482,23 +435,8 @@ def main():
                 .timer-display {
                     height: 18vh;
                     border-radius: 1.5vh;
-                    border: 0.4vh solid #4ade80; /* Verde por padrão */
+                    border: 0.4vh solid #FFFFFF;
                     margin-bottom: 0.8vh;
-                }
-
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1vh rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1.5vh rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 2vh rgba(239, 68, 68, 0.6);
                 }
                 
                 .timer-text {
@@ -540,7 +478,7 @@ def main():
     <body>
         <div class="container">
             <!-- Display do cronômetro -->
-            <div id="timerDisplay" class="timer-display border-green">
+            <div class="timer-display">
                 <div id="timer" class="timer-text timer-green">00.00</div>
             </div>
 
@@ -586,7 +524,6 @@ def main():
 
             // Elementos DOM
             const timerElement = document.getElementById('timer');
-            const timerDisplayElement = document.getElementById('timerDisplay');
             const playPauseBtn = document.getElementById('playPauseBtn');
             const statusElement = document.getElementById('status');
 
@@ -618,21 +555,10 @@ def main():
                 return 'timer-red';
             }
 
-            // Determinar classe de borda baseada no tempo
-            function getBorderClass() {
-                const timeInSeconds = time / 100;
-                if (timeInSeconds > 10) return 'border-green';
-                if (timeInSeconds > 5) return 'border-yellow';
-                return 'border-red';
-            }
-
             // Atualizar display
             function updateDisplay() {
                 timerElement.textContent = formatTime(time);
                 timerElement.className = `timer-text ${getTimerColor()}`;
-                
-                // Atualizar borda do display
-                timerDisplayElement.className = `timer-display ${getBorderClass()}`;
                 
                 // Atualizar botão play/pause
                 playPauseBtn.disabled = time === 0;
