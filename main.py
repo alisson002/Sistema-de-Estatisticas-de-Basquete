@@ -1,23 +1,115 @@
 import streamlit as st
 from st_pages import add_page_title
 
+import streamlit as st
+from st_pages import add_page_title
+
+# CSS para aumentar a fonte da barra lateral
+st.markdown(
+    """
+    <style>
+    /* Aumentar fonte dos títulos das seções (🏆 Campeonatos, 🏅 Ranking Geral, etc.) */
+    .st-emotion-cache-1bgz58e {
+        font-size: 24px !important;
+        font-weight: bold !important;
+    }
+    
+    /* Aumentar fonte do "Início" e deixar em negrito */
+    .st-emotion-cache-b4a1cq {
+        font-size: 24px !important;
+        font-weight: bold !important;
+    }
+    
+    /* Forçar negrito especificamente na barra lateral */
+    [data-testid="stSidebarNav"] .st-emotion-cache-b4a1cq {
+        font-weight: bold !important;
+    }
+    
+    /* Alternativa mais específica para links na sidebar */
+    [data-testid="stSidebarNavLink"][aria-current="page"] span[label="Início"] {
+        font-weight: bold !important;
+    }
+    
+    /* Aumentar fonte dos outros nomes das páginas individuais */
+    .st-emotion-cache-kbwqmw,
+    .st-emotion-cache-1lhpvq6,
+    .st-emotion-cache-19q0fwg,
+    .st-emotion-cache-wcsic8,
+    .st-emotion-cache-1ne06is,
+    .st-emotion-cache-fxurbn {
+        font-size: 24px !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Aumentar fonte dos emojis/ícones */
+    .st-emotion-cache-1u1i2v4 {
+        font-size: 26px !important;
+    }
+    
+    /* Alternativa mais segura - usar seletores de atributos */
+    [data-testid="stNavSectionHeader"] span {
+        font-size: 26px !important;
+        font-weight: bold !important;
+    }
+    
+    /* Aumentar fonte de todos os links de navegação */
+    [data-testid="stSidebarNavLink"] span[label] {
+        font-size: 24px !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Aumentar fonte de toda a área de navegação como fallback */
+    [data-testid="stSidebarNav"] {
+        font-size: 24px !important;
+    }
+    
+    /* Ajustar espaçamento para acomodar fonte maior */
+    [data-testid="stSidebarNavLink"] {
+        padding: 8px 12px !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Forçar negrito com máxima especificidade */
+    section[data-testid="stSidebar"] [data-testid="stSidebarNav"] .st-emotion-cache-1o8ztgu {
+        font-weight: bold !important;
+    }
+    
+    @media (max-width: 768px) {
+        section[data-testid="stSidebar"] {
+            width: 280px !important;
+            min-width: 280px !important;
+            max-width: 280px !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Estrutura de navegação do sistema
 # O dicionário "pages" organiza as categorias e páginas do sistema
 pages = {
     
     "": 
-    [st.Page("paginas/inicio.py", title="Início", icon="🏀", default=True)],
+    [st.Page("paginas/inicio.py", title="🏀 Início", default=True)],
     
     "🏆 Campeonatos": [
         
-        st.Page("paginas/competicoes.py", title="Competição",icon="🥇"),
-        st.Page("paginas/equipes.py", title="Equipes",icon="💪"),
+        st.Page("paginas/competicoes.py", title="🥇 Competição"),
+        st.Page("paginas/equipes.py", title="💪 Equipes"),
     ],
     
     "🏅 Ranking Geral": [
         
-        st.Page("paginas/atletas.py", title="Atletas", icon="⛹🏿‍♂️"),
-        st.Page("paginas/times.py", title="Times", icon="👊"),
+        st.Page("paginas/atletas.py", title="⛹🏿‍♂️ Atletas"),
+        st.Page("paginas/times.py", title="👊 Times"),
+        
+    ],
+    
+    "👨🏾‍💻 Outros Projetos": [
+        
+        st.Page("paginas/detector_sinalizacao.py", title="🕵🏾 Detector de Sinalização"),
+        st.Page("paginas/cronometro.py", title="⏱️ Cronômetro 24/14"),
         
     ],
     
@@ -34,45 +126,3 @@ add_page_title(pg)
 # Executa a página selecionada pelo usuário
 # O método run() carrega e exibe a lógica da página correspondente no menu
 pg.run()
-
-
-# # LOGIN
-# import streamlit as st
-
-# if "logged_in" not in st.session_state:
-#     st.session_state.logged_in = False
-
-# def login():
-#     if st.button("Log in"):
-#         st.session_state.logged_in = True
-#         st.rerun()
-
-# def logout():
-#     if st.button("Log out"):
-#         st.session_state.logged_in = False
-#         st.rerun()
-
-# login_page = st.Page(login, title="Log in", icon=":material/login:")
-# logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
-# #LOGIN
-
-# inicio = st.Page("paginas/inicio.py", title="Início", icon="🏀", default=True)
-# competicao = st.Page("paginas/competicoes.py", title="Competição",icon="🥇")
-# equipes = st.Page("paginas/equipes.py", title="Equipes",icon="💪")
-# atletas = st.Page("paginas/atletas.py", title="Atletas", icon="⛹🏿‍♂️")
-# times = st.Page("paginas/times.py", title="Times", icon="👊")
-
-# if st.session_state.logged_in:
-#     pg = st.navigation(
-#         {
-            
-#             "": [inicio],
-#             "🏆 Campeonatos": [competicao, equipes],
-#             "🏅 Ranking Geral": [atletas, times],
-#             "Conta": [logout_page],
-#         }
-#     )
-# else:
-#     pg = st.navigation([login_page])
-
-# pg.run()
