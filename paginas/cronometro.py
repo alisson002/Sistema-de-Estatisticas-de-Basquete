@@ -294,7 +294,7 @@ def main():
                 }
 
                 .container {
-                    width: 90.25vw; /* 5% menor que 95vw original */
+                    width: 120vw; /* 5% menor que 95vw original */
                     height: auto;
                     min-height: auto;
                     gap: 28.5px; /* 5% menor que 30px original - valores fixos para mobile */
@@ -387,7 +387,7 @@ def main():
                 }
 
                 .timer-text {
-                    font-size: 85px; /* 5% menor que 105px original */
+                    font-size: 90px; /* 5% menor que 105px original */
                     letter-spacing: 2.85px; /* 5% menor que 3px original */
                 }
                 
