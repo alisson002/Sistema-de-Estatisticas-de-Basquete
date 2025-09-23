@@ -387,7 +387,7 @@ def main():
                 }
 
                 .timer-text {
-                    font-size: 85px; /* 5% menor que 105px original */
+                    font-size: 90px; /* 5% menor que 105px original */
                     letter-spacing: 2.85px; /* 5% menor que 3px original */
                 }
                 
@@ -396,7 +396,7 @@ def main():
                     border-radius: 22.8px; /* 5% menor que 24px original */
                     border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
                     margin-bottom: 15px;
-                    width: 400px;
+                    width: 380px;
                 }
 
                 .timer-display.border-green {
