@@ -396,7 +396,7 @@ def main():
                     border-radius: 22.8px; /* 5% menor que 24px original */
                     border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
                     margin-bottom: 15px;
-                    width: 380px;
+                    width: 400px;
                 }
 
                 .timer-display.border-green {
