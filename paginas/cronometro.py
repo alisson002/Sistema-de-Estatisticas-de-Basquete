@@ -155,7 +155,7 @@ def main():
             }
 
             html, body {
-                height: 65vh;
+                height: -100vh;
                 width: 100vw;
                 background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark));
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
