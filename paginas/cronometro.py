@@ -13,7 +13,7 @@ def main():
     <style>
     #MainMenu {visibility: visible;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    header {visibility: visible;}
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
     .st-emotion-cache-gf1xsr {visibility: hidden;}
@@ -133,7 +133,7 @@ def main():
                 justify-content: center;
                 font-family: 'Arial', sans-serif;
                 overflow: hidden;
-                margin-top: -150px;
+                margin-top: -100px;
             }
 
             .container {
