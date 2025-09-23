@@ -13,7 +13,7 @@ def main():
     <style>
     #MainMenu {visibility: visible;}
     footer {visibility: hidden;}
-    header {visibility: visible;}
+    header {visibility: hidden;}
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
     .st-emotion-cache-gf1xsr {visibility: hidden;}
