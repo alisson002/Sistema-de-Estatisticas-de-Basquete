@@ -141,7 +141,7 @@ def main():
             }
 
             html, body {
-                height: 100vh;
+                height: 85vh;
                 width: 100vw;
                 background: linear-gradient(135deg, #0e1117, #0e1117);
                 display: flex;
@@ -149,58 +149,58 @@ def main():
                 justify-content: center;
                 font-family: 'Arial', sans-serif;
                 overflow: hidden;
-                margin-top: -70px; /* Reduzido de -100px para -70px (30% menor) */
+                margin-top: -65px; /* Reduzido de -100px para -65px (35% menor) */
             }
 
             .container {
-                width: 63vw; /* Reduzido de 90vw para 63vw (30% menor) */
-                max-width: 560px; /* Reduzido de 800px para 560px (30% menor) */
-                height: 63vh; /* Reduzido de 90vh para 63vh (30% menor) */
+                width: 58.5vw; /* Reduzido de 90vw para 58.5vw (35% menor) */
+                max-width: 520px; /* Reduzido de 800px para 520px (35% menor) */
+                height: 58.5vh; /* Reduzido de 90vh para 58.5vh (35% menor) */
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 28px; /* Reduzido de 40px para 28px (30% menor) */
+                gap: 26px; /* Reduzido de 40px para 26px (35% menor) */
             }
 
             .timer-display {
                 background: #030712;
-                border-radius: 25px; /* Reduzido de 36px para 25px (30% menor) */
-                border: 6px solid #FFFFFF; /* Reduzido de 9px para 6px (30% menor) */
+                border-radius: 23px; /* Reduzido de 36px para 23px (35% menor) */
+                border: 6px solid #FFFFFF; /* Reduzido de 9px para 6px (35% menor) */
                 width: 100%;
-                height: 263px; /* Reduzido de 375px para 263px (30% menor) */
+                height: 244px; /* Reduzido de 375px para 244px (35% menor) */
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6); /* Reduzido de 15px 40px para 10px 28px (30% menor) */
-                margin-bottom: 14px; /* Reduzido de 20px para 14px (30% menor) */
+                box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6); /* Reduzido de 15px 40px para 10px 26px (35% menor) */
+                margin-bottom: 13px; /* Reduzido de 20px para 13px (35% menor) */
             }
 
             .timer-text {
-                font-size: 126px; /* Reduzido de 180px para 126px (30% menor) */
+                font-size: 117px; /* Reduzido de 180px para 117px (35% menor) */
                 font-weight: 900;
                 font-family: 'Courier New', monospace;
-                letter-spacing: 6px; /* Reduzido de 9px para 6px (30% menor) */
+                letter-spacing: 6px; /* Reduzido de 9px para 6px (35% menor) */
                 transition: color 0.3s ease;
             }
 
             .button-row {
                 display: flex;
-                gap: 28px; /* Reduzido de 40px para 28px (30% menor) */
-                margin-bottom: 14px; /* Reduzido de 20px para 14px (30% menor) */
+                gap: 26px; /* Reduzido de 40px para 26px (35% menor) */
+                margin-bottom: 13px; /* Reduzido de 20px para 13px (35% menor) */
             }
 
             .button-row-small {
                 display: flex;
-                gap: 21px; /* Reduzido de 30px para 21px (30% menor) */
-                margin-bottom: 14px; /* Reduzido de 20px para 14px (30% menor) */
+                gap: 19.5px; /* Reduzido de 30px para 19.5px (35% menor) */
+                margin-bottom: 13px; /* Reduzido de 20px para 13px (35% menor) */
             }
 
             .btn {
                 border: none;
                 border-radius: 50%;
                 font-weight: bold;
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); /* Reduzido de 6px 20px para 4px 14px (30% menor) */
+                box-shadow: 0 4px 13px rgba(0, 0, 0, 0.4); /* Reduzido de 6px 20px para 4px 13px (35% menor) */
                 transition: all 0.2s ease;
                 cursor: pointer;
                 display: flex;
@@ -208,13 +208,13 @@ def main():
                 justify-content: center;
                 background: #FFFFFF;
                 color: black;
-                font-size: 13px; /* Reduzido de 18px para 13px (30% menor) */
+                font-size: 12px; /* Reduzido de 18px para 12px (35% menor) */
             }
 
             .btn:hover:not(:disabled) {
                 transform: scale(1.05);
                 background: #ea580c;
-                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); /* Reduzido de 8px 25px para 6px 18px (30% menor) */
+                box-shadow: 0 5px 16px rgba(0, 0, 0, 0.5); /* Reduzido de 8px 25px para 5px 16px (35% menor) */
             }
 
             .btn:active {
@@ -227,39 +227,39 @@ def main():
             }
 
             .btn-large {
-                width: 84px; /* Reduzido de 120px para 84px (30% menor) */
-                height: 84px; /* Reduzido de 120px para 84px (30% menor) */
-                font-size: 17px; /* Reduzido de 24px para 17px (30% menor) */
+                width: 78px; /* Reduzido de 120px para 78px (35% menor) */
+                height: 78px; /* Reduzido de 120px para 78px (35% menor) */
+                font-size: 16px; /* Reduzido de 24px para 16px (35% menor) */
             }
 
             .btn-play {
-                width: 98px; /* Reduzido de 140px para 98px (30% menor) */
-                height: 98px; /* Reduzido de 140px para 98px (30% menor) */
-                font-size: 20px; /* Reduzido de 28px para 20px (30% menor) */
-                margin: 14px 0; /* Reduzido de 20px para 14px (30% menor) */
+                width: 91px; /* Reduzido de 140px para 91px (35% menor) */
+                height: 91px; /* Reduzido de 140px para 91px (35% menor) */
+                font-size: 18px; /* Reduzido de 28px para 18px (35% menor) */
+                margin: 13px 0; /* Reduzido de 20px para 13px (35% menor) */
             }
 
             .btn-small {
-                width: 70px; /* Reduzido de 100px para 70px (30% menor) */
-                height: 70px; /* Reduzido de 100px para 70px (30% menor) */
-                font-size: 13px; /* Reduzido de 18px para 13px (30% menor) */
+                width: 65px; /* Reduzido de 100px para 65px (35% menor) */
+                height: 65px; /* Reduzido de 100px para 65px (35% menor) */
+                font-size: 12px; /* Reduzido de 18px para 12px (35% menor) */
             }
 
             .status-text {
                 text-align: center;
                 color: #9ca3af;
-                font-size: 13px; /* Reduzido de 18px para 13px (30% menor) */
-                margin-top: 14px; /* Reduzido de 20px para 14px (30% menor) */
+                font-size: 12px; /* Reduzido de 18px para 12px (35% menor) */
+                margin-top: 13px; /* Reduzido de 20px para 13px (35% menor) */
             }
 
             .play-icon, .pause-icon {
-                width: 34px; /* Reduzido de 48px para 34px (30% menor) */
-                height: 34px; /* Reduzido de 48px para 34px (30% menor) */
+                width: 31px; /* Reduzido de 48px para 31px (35% menor) */
+                height: 31px; /* Reduzido de 48px para 31px (35% menor) */
                 pointer-events: none;
             }
 
             .play-icon {
-                margin-left: 4px; /* Reduzido de 6px para 4px (30% menor) */
+                margin-left: 4px; /* Reduzido de 6px para 4px (35% menor) */
             }
 
             /* Cores do timer baseadas no tempo */
@@ -316,21 +316,21 @@ def main():
                 }
 
                 .btn {
-                    font-size: 12.35px; /* 5% menor que 13px atual (que já era 30% menor) */
+                    font-size: 17.1px; /* 5% menor que 18px original */
                 }
 
                 .status-text {
-                    font-size: 12.35px; /* 5% menor que 13px atual */
-                    margin-top: 13.3px; /* 5% menor que 14px atual */
+                    font-size: 17.1px; /* 5% menor que 18px original */
+                    margin-top: 19px; /* 5% menor que 20px original */
                 }
 
                 .play-icon, .pause-icon {
-                    width: 32.3px; /* 5% menor que 34px atual */
-                    height: 32.3px; /* 5% menor que 34px atual */
+                    width: 45.6px; /* 5% menor que 48px original */
+                    height: 45.6px; /* 5% menor que 48px original */
                 }
 
                 .play-icon {
-                    margin-left: 3.8px; /* 5% menor que 4px atual */
+                    margin-left: 5.7px; /* 5% menor que 6px original */
                 }
             }
 
