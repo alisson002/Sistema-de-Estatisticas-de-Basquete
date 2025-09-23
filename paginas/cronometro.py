@@ -16,6 +16,15 @@ def main():
     header {visibility: visible;}
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
+    .st-emotion-cache-gf1xsr {
+        visibility: visible;
+        padding-left: 380px;
+        color: white;
+    }
+    .st-emotion-cache-arp25b {
+        visibility: visible;
+        padding-left: 380px;
+    }
     
     /* Remover padding e margin */
     .css-1d391kg {padding: 0rem 0rem 0rem;}
