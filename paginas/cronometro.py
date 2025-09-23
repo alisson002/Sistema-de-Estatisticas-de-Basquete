@@ -161,7 +161,7 @@ def main():
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 overflow-x: hidden;
                 position: relative;
-                margin-top: -35px;
+                margin-top: -65px;
             }
 
             .main-container {
