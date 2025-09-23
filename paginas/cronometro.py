@@ -113,6 +113,18 @@ def main():
         padding: 5px 0 !important;
         line-height: 1.2 !important;
     }
+    h1#inicio {
+        margin: 0 !important;
+        padding: 5px 0 !important;
+        line-height: 1.2 !important;
+        font-size: 1.5rem !important; /* Reduz o tamanho da fonte se necessário */
+    }
+
+    /* Ou direciona o container pai */
+    h1#inicio .st-emotion-cache-gf1xsr {
+        margin: 0 !important;
+        padding: 5px 0 !important;
+    }
     </style>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
