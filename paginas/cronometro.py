@@ -303,7 +303,7 @@ def main():
                 .timer-display {
                     height: 285px; /* 5% menor que 300px original */
                     border-radius: 28.5px; /* 5% menor que 30px original */
-                    border: 30px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
+                    border: 6.65px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
                     margin-bottom: 19px;
                     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra fixa para mobile */
                 }
@@ -387,7 +387,7 @@ def main():
                 }
 
                 .timer-text {
-                    font-size: 90px; /* 5% menor que 105px original */
+                    font-size: 85px; /* 5% menor que 105px original */
                     letter-spacing: 2.85px; /* 5% menor que 3px original */
                 }
                 
@@ -396,6 +396,7 @@ def main():
                     border-radius: 22.8px; /* 5% menor que 24px original */
                     border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
                     margin-bottom: 15px;
+                    width: 400px;
                 }
 
                 .timer-display.border-green {
