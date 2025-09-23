@@ -1,0 +1,34 @@
+[[pages]]
+path = "paginas/inicio.py"
+name = "Inicio"
+icon = ":house:"
+
+[[pages]]
+name = "Campeonatos"
+icon = "🏆"
+is_section = true
+
+[[pages]]
+path = "paginas/competicoes.py"
+name = "Competição"
+icon = "🥇"
+
+[[pages]]
+path = "paginas/equipes.py"
+name = "Equipes"
+icon = "💪"
+
+[[pages]]
+name = "Ranking Geral"
+icon = "🏅"
+is_section = true
+
+[[pages]]
+path = "paginas/atletas.py"
+name = "Atletas"
+icon = "⛹🏿‍♂️"
+
+[[pages]]
+path = "paginas/times.py"
+name = "Times"
+icon = "👊"
