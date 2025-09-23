@@ -289,7 +289,7 @@ def main():
             /* Responsividade para telas menores - 5% menor que as proporções originais */
             @media (max-width: 768px) {
                 html, body {
-                    margin-top: -140px; /* 5% menor que -100px original */
+                    margin-top: -150px; /* 5% menor que -100px original */
                     height: 100vh; /* Volta para 100vh no mobile */
                 }
 
