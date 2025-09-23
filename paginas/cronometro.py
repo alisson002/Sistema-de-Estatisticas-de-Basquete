@@ -16,7 +16,15 @@ def main():
     header {visibility: visible;}
     .stDeployButton {visibility: visible;}
     .stDecoration {visibility: hidden;}
-    .st-emotion-cache-gf1xsr {visibility: hidden;}
+    .st-emotion-cache-gf1xsr {
+        visibility: visible;
+        padding-left: 380px;
+        color: white;
+    }
+    .st-emotion-cache-arp25b {
+        visibility: visible;
+        padding-left: 380px;
+    }
     
     /* Remover padding e margin */
     .css-1d391kg {padding: 0rem 0rem 0rem;}
@@ -25,7 +33,7 @@ def main():
     
     /* Forçar fundo escuro em toda a aplicação */
     .stApp {
-        background: linear-gradient(135deg, #000000, #000000) !important;
+        background: linear-gradient(135deg, #0e1117, #0e1117) !important;
         overflow: hidden !important;
         height: 100vh !important;
         position: fixed !important;
@@ -67,7 +75,7 @@ def main():
     
     /* Para versões mais novas do Streamlit */
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #000000, #000000) !important;
+        background: linear-gradient(135deg, #0e1117, #0e1117) !important;
         overflow: hidden !important;
         height: 100vh !important;
         position: fixed !important;
@@ -126,7 +134,7 @@ def main():
             html, body {
                 height: 100vh;
                 width: 100vw;
-                background: linear-gradient(135deg, #000000, #000000);
+                background: linear-gradient(135deg, #0e1117, #0e1117);
                 display: flex;
                 align-items: center;
                 justify-content: center;

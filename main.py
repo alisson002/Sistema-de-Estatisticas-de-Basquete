@@ -76,10 +76,16 @@ st.markdown(
     
     @media (max-width: 768px) {
         section[data-testid="stSidebar"] {
-            width: 280px !important;
-            min-width: 280px !important;
-            max-width: 280px !important;
+            width: 500px !important;
+            min-width: 500px !important;
+            max-width: 500px !important;
         }
+    }
+    
+    section[data-testid="stSidebar"] {
+        width: 380px !important;        /* Sua largura desejada */
+        min-width: 380px !important;    /* Mesma largura mínima */
+        max-width: 380px !important;    /* Mesma largura máxima */
     }
     </style>
     """,
