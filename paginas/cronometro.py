@@ -131,9 +131,23 @@ def main():
     <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cronômetro de Basquete</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Cronômetro de Basquete - Django</title>
+        
+        <!-- Bootstrap CSS para responsividade extra -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        
         <style>
+            :root {
+                --primary-green: #4ade80;
+                --primary-yellow: #fbbf24;
+                --primary-red: #ef4444;
+                --bg-dark: #0e1117;
+                --bg-darker: #030712;
+                --text-gray: #9ca3af;
+                --shadow-color: rgba(0, 0, 0, 0.4);
+            }
+
             * {
                 margin: 0;
                 padding: 0;
@@ -141,602 +155,812 @@ def main():
             }
 
             html, body {
-                height: 45vh;
+                height: 100vh;
                 width: 100vw;
-                background: linear-gradient(135deg, #0e1117, #0e1117);
+                background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark));
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                overflow-x: hidden;
+                position: relative;
+                margin-top: -35px;
+            }
+
+            .main-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-family: 'Arial', sans-serif;
-                overflow: hidden;
-                margin-top: -35px; /* Reduzido de -100px para -35px (65% menor) */
+                min-height: 100vh;
+                padding: 1rem;
             }
 
-            .container {
-                width: 31.5vw; /* Reduzido de 90vw para 31.5vw (65% menor) */
-                max-width: 280px; /* Reduzido de 800px para 280px (65% menor) */
-                min-width: 300px;
-                height: 31.5vh; /* Reduzido de 90vh para 31.5vh (65% menor) */
-                min-height: 400px;
+            .timer-wrapper {
+                width: 100%;
+                max-width: 400px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                gap: 1.4vh; /* Reduzido de 40px para 14px (65% menor) convertido para vh */
+                gap: 1.5rem;
             }
 
+            /* Display do cronômetro */
             .timer-display {
-                background: #030712;
-                border-radius: 1.26vh; /* Reduzido de 36px para 12.6px (65% menor) convertido para vh */
-                border: 0.315vh solid #4ade80; /* Verde por padrão */
+                background: var(--bg-darker);
+                border-radius: clamp(1rem, 3vw, 2rem);
+                border: 4px solid var(--primary-green);
                 width: 100%;
-                height: 13.125vh; /* Reduzido de 375px para 131.25px (65% menor) convertido para vh */
+                aspect-ratio: 16/9;
+                min-height: 150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6); /* Reduzido de 15px 40px para 5.25px 14px (65% menor) */
-                margin-bottom: 0.7vh; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
+                box-shadow: 
+                    0 8px 32px var(--shadow-color),
+                    0 0 20px rgba(74, 222, 128, 0.2);
                 transition: all 0.3s ease;
+                position: relative;
             }
 
-            /* Classes para diferentes cores de borda e glow */
             .timer-display.border-green {
-                border-color: #4ade80;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1vh rgba(74, 222, 128, 0.2);
+                border-color: var(--primary-green);
+                box-shadow: 
+                    0 8px 32px var(--shadow-color),
+                    0 0 20px rgba(74, 222, 128, 0.2);
             }
 
             .timer-display.border-yellow {
-                border-color: #fbbf24;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1.5vh rgba(251, 191, 36, 0.4);
+                border-color: var(--primary-yellow);
+                box-shadow: 
+                    0 8px 32px var(--shadow-color),
+                    0 0 30px rgba(251, 191, 36, 0.4);
             }
 
             .timer-display.border-red {
-                border-color: #ef4444;
-                box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 2vh rgba(239, 68, 68, 0.6);
+                border-color: var(--primary-red);
+                box-shadow: 
+                    0 8px 32px var(--shadow-color),
+                    0 0 40px rgba(239, 68, 68, 0.6);
             }
 
             .timer-text {
-                font-size: 6.3vh; /* Reduzido de 180px para 63px (65% menor) convertido para vh */
+                font-size: clamp(5rem, 12vw, 6rem);
                 font-weight: 900;
                 font-family: 'Courier New', monospace;
-                letter-spacing: 0.315vh; /* Reduzido de 9px para 3.15px (65% menor) convertido para vh */
+                letter-spacing: 0.1em;
                 transition: color 0.3s ease;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             }
 
-            .button-row {
-                display: flex;
-                gap: 1.4vh; /* Reduzido de 40px para 14px (65% menor) convertido para vh */
-                margin-bottom: 0.7vh; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
-            }
+            .timer-green { color: var(--primary-green); }
+            .timer-yellow { color: var(--primary-yellow); }
+            .timer-red { color: var(--primary-red); }
 
-            .button-row-small {
-                display: flex;
-                gap: 1.05vh; /* Reduzido de 30px para 10.5px (65% menor) convertido para vh */
-                margin-bottom: 0.7vh; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
-            }
-
-            .btn {
+            /* Botões */
+            .btn-custom {
                 border: none;
                 border-radius: 50%;
                 font-weight: bold;
-                box-shadow: 0 0.21vh 0.7vh rgba(0, 0, 0, 0.4); /* Reduzido de 6px 20px para 2.1px 7px (65% menor) */
+                box-shadow: 0 4px 15px var(--shadow-color);
                 transition: all 0.2s ease;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: #FFFFFF;
-                color: black;
-                font-size: 0.63vh; /* Reduzido de 18px para 6.3px (65% menor) convertido para vh */
+                background: #ffffff;
+                color: #000;
+                font-family: 'Segoe UI', sans-serif;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
-            .btn:hover:not(:disabled) {
+            .btn-custom:hover:not(:disabled) {
                 transform: scale(1.05);
                 background: #ea580c;
-                box-shadow: 0 0.28vh 0.875vh rgba(0, 0, 0, 0.5); /* Reduzido de 8px 25px para 2.8px 8.75px (65% menor) */
+                color: white;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             }
 
-            .btn:active {
+            .btn-custom:active {
                 transform: scale(0.95);
             }
 
-            .btn:disabled {
+            .btn-custom:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
             }
 
             .btn-large {
-                width: 4.2vh; /* Reduzido de 120px para 42px (65% menor) convertido para vh */
-                height: 4.2vh; /* Reduzido de 120px para 42px (65% menor) convertido para vh */
-                font-size: 0.84vh; /* Reduzido de 24px para 8.4px (65% menor) convertido para vh */
+                width: clamp(60px, 15vw, 80px);
+                height: clamp(60px, 15vw, 80px);
+                font-size: clamp(0.8rem, 3vw, 1rem);
             }
 
             .btn-play {
-                width: 4.9vh; /* Reduzido de 140px para 49px (65% menor) convertido para vh */
-                height: 4.9vh; /* Reduzido de 140px para 49px (65% menor) convertido para vh */
-                font-size: 0.98vh; /* Reduzido de 28px para 9.8px (65% menor) convertido para vh */
-                margin: 0.7vh 0; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
+                width: clamp(80px, 20vw, 100px);
+                height: clamp(80px, 20vw, 100px);
+                font-size: clamp(1rem, 4vw, 1.2rem);
+                background: #ffffff;
+                color: #000;
+                margin: 0.8rem 0;
             }
 
             .btn-small {
-                width: 3.5vh; /* Reduzido de 100px para 35px (65% menor) convertido para vh */
-                height: 3.5vh; /* Reduzido de 100px para 35px (65% menor) convertido para vh */
-                font-size: 0.63vh; /* Reduzido de 18px para 6.3px (65% menor) convertido para vh */
+                width: clamp(50px, 12vw, 65px);
+                height: clamp(50px, 12vw, 65px);
+                font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            }
+
+            .button-row {
+                display: flex;
+                gap: clamp(1.5rem, 5vw, 2.5rem);
+                justify-content: center;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+
+            .button-row-small {
+                display: flex;
+                gap: clamp(0.8rem, 3vw, 1.5rem);
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+                margin-bottom: 0.8rem;
             }
 
             .status-text {
                 text-align: center;
-                color: #9ca3af;
-                font-size: 0.63vh; /* Reduzido de 18px para 6.3px (65% menor) convertido para vh */
-                margin-top: 0.7vh; /* Reduzido de 20px para 7px (65% menor) convertido para vh */
+                color: var(--text-gray);
+                font-size: clamp(0.8rem, 3vw, 1rem);
+                font-weight: 500;
             }
 
             .play-icon, .pause-icon {
-                width: 1.68vh; /* Reduzido de 48px para 16.8px (65% menor) convertido para vh */
-                height: 1.68vh; /* Reduzido de 48px para 16.8px (65% menor) convertido para vh */
+                width: clamp(20px, 6vw, 32px);
+                height: clamp(20px, 6vw, 32px);
                 pointer-events: none;
             }
 
             .play-icon {
-                margin-left: 0.21vh; /* Reduzido de 6px para 2.1px (65% menor) convertido para vh */
+                margin-left: 2px;
             }
 
-            /* Cores do timer baseadas no tempo */
-            .timer-green { color: #4ade80; }
-            .timer-yellow { color: #fbbf24; }
-            .timer-red { color: #ef4444; }
+            /* Loading indicator */
+            .loading-indicator {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--text-gray);
+                font-size: 0.9rem;
+            }
 
-            /* Responsividade para telas menores - 5% menor que as proporções originais */
-            @media (max-width: 768px) {
-                html, body {
-                    margin-top: -160px; /* 5% menor que -100px original */
-                    height: 100vh; /* Volta para 100vh no mobile */
+            /* Responsividade específica para dispositivos */
+            
+            /* Smartphones em modo retrato */
+            @media (max-width: 576px) and (orientation: portrait) {
+                .main-container {
+                    padding: 0.5rem;
                 }
-
-                .container {
-                    width: 90.25vw; /* 5% menor que 95vw original */
-                    height: auto;
-                    min-height: auto;
-                    gap: 28.5px; /* 5% menor que 30px original - valores fixos para mobile */
+                
+                .timer-wrapper {
+                    max-width: 100%;
+                    gap: 1rem;
                 }
                 
                 .timer-display {
-                    height: 285px; /* 5% menor que 300px original */
-                    border-radius: 28.5px; /* 5% menor que 30px original */
-                    border: 6.65px solid #4ade80; /* Verde por padrão - 5% menor que 7px original */
-                    margin-bottom: 19px;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra fixa para mobile */
-                }
-
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(239, 68, 68, 0.6);
-                }
-                
-                .timer-text {
-                    font-size: 128.25px; /* 5% menor que 135px original */
-                    letter-spacing: 5.7px; /* 5% menor que 6px original */
-                }
-                
-                .btn-large {
-                    width: 95px; /* 5% menor que 100px original */
-                    height: 95px; /* 5% menor que 100px original */
-                    font-size: 19px; /* 5% menor que 20px original */
-                }
-                
-                .btn-play {
-                    width: 114px; /* 5% menor que 120px original */
-                    height: 114px; /* 5% menor que 120px original */
-                    font-size: 22.8px; /* 5% menor que 24px original */
-                    margin: 19px 0;
-                }
-                
-                .btn-small {
-                    width: 76px; /* 5% menor que 80px original */
-                    height: 76px; /* 5% menor que 80px original */
-                    font-size: 15.2px; /* 5% menor que 16px original */
+                    min-height: 120px;
+                    aspect-ratio: 2/1;
                 }
                 
                 .button-row {
-                    gap: 28.5px; /* 5% menor que 30px original */
-                    margin-bottom: 19px;
+                    gap: 1.8rem;
+                    margin-bottom: 0.8rem;
                 }
                 
                 .button-row-small {
-                    gap: 19px; /* 5% menor que 20px original */
-                    margin-bottom: 19px;
+                    flex-wrap: wrap;
+                    gap: 0.8rem;
+                    margin-bottom: 1rem;
                 }
-
-                .btn {
-                    font-size: 17.1px; /* 5% menor que 18px original */
-                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-                }
-
-                .btn:hover:not(:disabled) {
-                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-                }
-
-                .status-text {
-                    font-size: 17.1px; /* 5% menor que 18px original */
-                    margin-top: 19px;
-                }
-
-                .play-icon, .pause-icon {
-                    width: 45.6px; /* 5% menor que 48px original */
-                    height: 45.6px; /* 5% menor que 48px original */
-                }
-
-                .play-icon {
-                    margin-left: 5.7px; /* 5% menor que 6px original */
+                
+                .btn-small {
+                    min-width: 45px;
+                    min-height: 45px;
                 }
             }
 
-            @media (max-width: 480px) {
-                .container {
-                    gap: 22px;
+            /* Smartphones em modo paisagem */
+            @media (max-width: 896px) and (orientation: landscape) {
+                .main-container {
+                    padding: 0.5rem;
+                    align-items: stretch;
                 }
-
-                .timer-text {
-                    font-size: 120px; /* 5% menor que 105px original */
-                    letter-spacing: 2.85px; /* 5% menor que 3px original */
+                
+                .timer-wrapper {
+                    max-width: 100%;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 1rem;
                 }
                 
                 .timer-display {
-                    height: 160px; /* 5% menor que 240px original */
-                    border-radius: 22.8px; /* 5% menor que 24px original */
-                    border: 4.75px solid #4ade80; /* Verde por padrão - 5% menor que 5px original */
-                    margin-bottom: 15px;
-                    width: 410px;
-                }
-
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(239, 68, 68, 0.6);
+                    flex: 1;
+                    max-width: 40%;
+                    aspect-ratio: 3/2;
                 }
                 
-                .btn-large {
-                    width: 76px; /* 5% menor que 80px original */
-                    height: 76px; /* 5% menor que 80px original */
-                    font-size: 17.1px; /* 5% menor que 18px original */
+                .controls-section {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    max-width: 60%;
                 }
                 
-                .btn-play {
-                    width: 95px; /* 5% menor que 100px original */
-                    height: 95px; /* 5% menor que 100px original */
-                    font-size: 19px; /* 5% menor que 20px original */
-                    margin: 15px 0;
-                }
-                
-                .btn-small {
-                    width: 66.5px; /* 5% menor que 70px original */
-                    height: 66.5px; /* 5% menor que 70px original */
-                    font-size: 13.3px; /* 5% menor que 14px original */
-                }
-                
-                .button-row {
-                    gap: 19px; /* 5% menor que 20px original */
-                    margin-bottom: 15px;
-                }
-                
-                .button-row-small {
-                    gap: 14.25px; /* 5% menor que 15px original */
-                    margin-bottom: 15px;
-                }
-                
-                .status-text {
-                    font-size: 15.2px; /* 5% menor que 16px original */
-                    margin-top: 15px;
+                .button-row, .button-row-small {
+                    gap: 0.5rem;
                 }
             }
 
-            /* Ajustes para telas muito grandes */
+            /* Tablets */
+            @media (min-width: 577px) and (max-width: 1024px) {
+                .timer-wrapper {
+                    max-width: 500px;
+                    gap: 2rem;
+                }
+                
+                .timer-display {
+                    min-height: 200px;
+                }
+            }
+
+            /* Desktops grandes */
             @media (min-width: 1200px) {
-                .container {
-                    max-width: 320px; /* Proporcionalmente maior que 280px */
-                }
-            }
-
-            @media (min-width: 1600px) {
-                .container {
-                    max-width: 360px; /* Proporcionalmente maior que 280px */
-                }
-            }
-
-            @media (min-width: 2000px) {
-                .container {
-                    max-width: 420px; /* Proporcionalmente maior que 280px */
-                }
-            }
-
-            /* Ajustes para telas muito pequenas em altura no desktop */
-            @media (max-height: 600px) and (min-width: 769px) {
-                html, body {
-                    height: 90vh; /* Aumenta um pouco para telas baixas */
-                    margin-top: -40px; /* Reduz margin para aproveitar espaço */
-                }
-
-                .container {
-                    height: 80vh;
-                    gap: 1.5vh;
+                .timer-wrapper {
+                    max-width: 600px;
+                    gap: 2.5rem;
                 }
                 
                 .timer-display {
-                    height: 18vh;
-                    border-radius: 1.5vh;
-                    border: 0.4vh solid #4ade80; /* Verde por padrão */
-                    margin-bottom: 0.8vh;
+                    min-height: 250px;
                 }
+            }
 
-                .timer-display.border-green {
-                    border-color: #4ade80;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1vh rgba(74, 222, 128, 0.2);
-                }
-
-                .timer-display.border-yellow {
-                    border-color: #fbbf24;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 1.5vh rgba(251, 191, 36, 0.4);
-                }
-
-                .timer-display.border-red {
-                    border-color: #ef4444;
-                    box-shadow: 0 0.525vh 1.4vh rgba(0, 0, 0, 0.6), 0 0 2vh rgba(239, 68, 68, 0.6);
+            /* Telas muito altas (modo retrato em desktop) */
+            @media (min-height: 900px) and (orientation: portrait) {
+                .timer-wrapper {
+                    gap: 3rem;
                 }
                 
+                .timer-display {
+                    min-height: 300px;
+                }
+            }
+
+            /* Ajustes para telas pequenas em altura */
+            @media (max-height: 600px) {
+                .main-container {
+                    min-height: auto;
+                    padding: 0.5rem;
+                }
+                
+                .timer-wrapper {
+                    gap: 0.8rem;
+                }
+                
+                .timer-display {
+                    min-height: 80px;
+                    aspect-ratio: 3/1;
+                }
+            }
+
+            /* Reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                .timer-display,
+                .btn-custom,
                 .timer-text {
-                    font-size: 8vh;
-                    letter-spacing: 0.4vh;
+                    transition: none;
+                }
+            }
+
+            /* High contrast mode */
+            @media (prefers-contrast: high) {
+                .timer-display {
+                    border-width: 6px;
                 }
                 
-                .btn-large {
-                    width: 5vh;
-                    height: 5vh;
-                    font-size: 1vh;
+                .btn-custom {
+                    border: 2px solid #000;
+                }
+            }
+
+            /* Print styles */
+            @media print {
+                .main-container {
+                    background: white;
+                    color: black;
                 }
                 
-                .btn-play {
-                    width: 6vh;
-                    height: 6vh;
-                    font-size: 1.2vh;
-                    margin: 0.8vh 0;
-                }
-                
-                .btn-small {
-                    width: 4vh;
-                    height: 4vh;
-                    font-size: 0.8vh;
-                }
-                
-                .status-text {
-                    font-size: 0.8vh;
-                    margin-top: 0.8vh;
-                }
-                
-                .play-icon, .pause-icon {
-                    width: 2vh;
-                    height: 2vh;
+                .btn-custom {
+                    display: none;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="container">
-            <!-- Display do cronômetro -->
-            <div id="timerDisplay" class="timer-display border-green">
-                <div id="timer" class="timer-text timer-green">00.00</div>
-            </div>
+        <div class="main-container">
+            <div class="timer-wrapper">
+                <!-- Display do cronômetro -->
+                <div id="timerDisplay" class="timer-display border-green">
+                    <div id="timer" class="timer-text timer-green">00.00</div>
+                    <div id="loadingIndicator" class="loading-indicator d-none">
+                        Conectando...
+                    </div>
+                </div>
 
-            <!-- Botões superiores: +24s e +14s -->
-            <div class="button-row">
-                <button class="btn btn-large" onclick="start24()">+24s</button>
-                <button class="btn btn-large" onclick="start14()">+14s</button>
-            </div>
+                <div class="controls-section">
+                    <!-- Botões superiores: +24s e +14s -->
+                    <div class="button-row">
+                        <button class="btn-custom btn-large" onclick="setTime(24)" aria-label="Iniciar 24 segundos">
+                            +24s
+                        </button>
+                        <button class="btn-custom btn-large" onclick="setTime(14)" aria-label="Iniciar 14 segundos">
+                            +14s
+                        </button>
+                    </div>
 
-            <!-- Botão central: Play/Pause -->
-            <div>
-                <button id="playPauseBtn" class="btn btn-play" onclick="togglePlayPause()" disabled>
-                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </button>
-            </div>
+                    <!-- Botão central: Play/Pause -->
+                    <div class="button-row">
+                        <button id="playPauseBtn" class="btn-custom btn-play" onclick="togglePlayPause()" disabled aria-label="Play/Pause">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
 
-            <!-- Botões inferiores: +1s, +0.1s, +0.01s -->
-            <div class="button-row-small">
-                <button class="btn btn-small" onclick="add1s()">+1s</button>
-                <button class="btn btn-small" onclick="add01s()">+0.1s</button>
-                <button class="btn btn-small" onclick="add001s()">+0.01s</button>
-            </div>
+                    <!-- Botões de ajuste fino: +1s, +0.1s, +0.01s -->
+                    <div class="button-row-small">
+                        <button class="btn-custom btn-small" onclick="addTime(1)" aria-label="Adicionar 1 segundo">
+                            +1s
+                        </button>
+                        <button class="btn-custom btn-small" onclick="addTime(0.1)" aria-label="Adicionar 0.1 segundo">
+                            +0.1s
+                        </button>
+                        <button class="btn-custom btn-small" onclick="addTime(0.01)" aria-label="Adicionar 0.01 segundo">
+                            +0.01s
+                        </button>
+                    </div>
 
-            <!-- Botões inferiores: -1s, -0.1s, -0.01s -->
-            <div class="button-row-small">
-                <button class="btn btn-small" onclick="sub1s()">-1s</button>
-                <button class="btn btn-small" onclick="sub01s()">-0.1s</button>
-                <button class="btn btn-small" onclick="sub001s()">-0.01s</button>
-            </div>
+                    <!-- Botões de subtração: -1s, -0.1s, -0.01s -->
+                    <div class="button-row-small">
+                        <button class="btn-custom btn-small" onclick="subtractTime(1)" aria-label="Subtrair 1 segundo">
+                            -1s
+                        </button>
+                        <button class="btn-custom btn-small" onclick="subtractTime(0.1)" aria-label="Subtrair 0.1 segundo">
+                            -0.1s
+                        </button>
+                        <button class="btn-custom btn-small" onclick="subtractTime(0.01)" aria-label="Subtrair 0.01 segundo">
+                            -0.01s
+                        </button>
+                    </div>
 
-            <!-- Indicador de status -->
-            <div id="status" class="status-text">
-                Pressione +24s ou +14s para começar
+                    <!-- Indicador de status -->
+                    <div id="status" class="status-text">
+                        Pressione +24s ou +14s para começar
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Bootstrap JS para funcionalidades extras -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
         <script>
-            let time = 0; // em centésimos de segundo
-            let isRunning = false;
-            let intervalId = null;
-
-            // Elementos DOM
-            const timerElement = document.getElementById('timer');
-            const timerDisplayElement = document.getElementById('timerDisplay');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const statusElement = document.getElementById('status');
-
-            // Ícones SVG
-            const playIcon = `
-                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" style="pointer-events: none;">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            `;
-            
-            const pauseIcon = `
-                <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="pointer-events: none;">
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                </svg>
-            `;
-
-            // Formatar tempo para 00.00
-            function formatTime(timeInCentiseconds) {
-                const seconds = Math.floor(timeInCentiseconds / 100);
-                const centiseconds = timeInCentiseconds % 100;
-                return `${seconds.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
-            }
-
-            // Determinar cor baseada no tempo
-            function getTimerColor() {
-                const timeInSeconds = time / 100;
-                if (timeInSeconds > 10) return 'timer-green';
-                if (timeInSeconds > 5) return 'timer-yellow';
-                return 'timer-red';
-            }
-
-            // Determinar classe de borda baseada no tempo
-            function getBorderClass() {
-                const timeInSeconds = time / 100;
-                if (timeInSeconds > 10) return 'border-green';
-                if (timeInSeconds > 5) return 'border-yellow';
-                return 'border-red';
-            }
-
-            // Atualizar display
-            function updateDisplay() {
-                timerElement.textContent = formatTime(time);
-                timerElement.className = `timer-text ${getTimerColor()}`;
-                
-                // Atualizar borda do display
-                timerDisplayElement.className = `timer-display ${getBorderClass()}`;
-                
-                // Atualizar botão play/pause
-                playPauseBtn.disabled = time === 0;
-                playPauseBtn.innerHTML = isRunning ? pauseIcon : playIcon;
-                
-                // Atualizar status
-                if (time === 0) {
-                    statusElement.textContent = "Pressione +24s ou +14s para começar";
-                } else if (!isRunning) {
-                    statusElement.textContent = "Pressione play para iniciar";
-                } else {
-                    statusElement.textContent = "Cronômetro ativo";
+            class BasketballTimer {
+                constructor() {
+                    this.time = 0;
+                    this.isRunning = false;
+                    this.intervalId = null;
+                    this.updateInterval = null;
+                    this.isOnline = navigator.onLine;
+                    
+                    // Elementos DOM
+                    this.timerElement = document.getElementById('timer');
+                    this.timerDisplayElement = document.getElementById('timerDisplay');
+                    this.playPauseBtn = document.getElementById('playPauseBtn');
+                    this.statusElement = document.getElementById('status');
+                    this.loadingIndicator = document.getElementById('loadingIndicator');
+                    
+                    // Ícones SVG
+                    this.playIcon = `
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    `;
+                    
+                    this.pauseIcon = `
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    `;
+                    
+                    // CSRF Token para requisições Django
+                    this.csrfToken = this.getCSRFToken();
+                    
+                    // Inicializar
+                    this.init();
+                    this.setupEventListeners();
                 }
-            }
-
-            // Iniciar/parar o cronômetro
-            function startTimer() {
-                if (intervalId) clearInterval(intervalId);
                 
-                intervalId = setInterval(() => {
-                    if (time <= 0) {
-                        stopTimer();
+                getCSRFToken() {
+                    const cookies = document.cookie.split(';');
+                    for (let cookie of cookies) {
+                        const [name, value] = cookie.trim().split('=');
+                        if (name === 'csrftoken') {
+                            return value;
+                        }
+                    }
+                    return '';
+                }
+                
+                async init() {
+                    try {
+                        this.showLoading(true);
+                        await this.fetchTimerState();
+                        this.startPeriodicUpdate();
+                        this.showLoading(false);
+                    } catch (error) {
+                        console.error('Erro ao inicializar:', error);
+                        this.handleOfflineMode();
+                    }
+                }
+                
+                setupEventListeners() {
+                    // Listeners para conectividade
+                    window.addEventListener('online', () => {
+                        this.isOnline = true;
+                        this.init();
+                    });
+                    
+                    window.addEventListener('offline', () => {
+                        this.isOnline = false;
+                        this.handleOfflineMode();
+                    });
+                    
+                    // Cleanup ao fechar
+                    window.addEventListener('beforeunload', () => {
+                        this.cleanup();
+                    });
+                    
+                    // Listener para orientação da tela
+                    window.addEventListener('orientationchange', () => {
+                        setTimeout(() => this.updateDisplay(), 300);
+                    });
+                    
+                    // Listener para redimensionamento
+                    window.addEventListener('resize', () => {
+                        this.updateDisplay();
+                    });
+                    
+                    // Suporte a teclado
+                    document.addEventListener('keydown', (event) => {
+                        this.handleKeyboard(event);
+                    });
+                }
+                
+                handleKeyboard(event) {
+                    if (event.target.tagName === 'INPUT') return;
+                    
+                    switch(event.code) {
+                        case 'Space':
+                            event.preventDefault();
+                            this.togglePlayPause();
+                            break;
+                        case 'Digit1':
+                            this.setTime(24);
+                            break;
+                        case 'Digit2':
+                            this.setTime(14);
+                            break;
+                        case 'KeyR':
+                            this.resetTimer();
+                            break;
+                    }
+                }
+                
+                showLoading(show) {
+                    if (show) {
+                        this.loadingIndicator.classList.remove('d-none');
+                        this.timerElement.style.opacity = '0.5';
+                    } else {
+                        this.loadingIndicator.classList.add('d-none');
+                        this.timerElement.style.opacity = '1';
+                    }
+                }
+                
+                async fetchTimerState() {
+                    if (!this.isOnline) return;
+                    
+                    try {
+                        const response = await fetch('/api/timer-state/');
+                        const data = await response.json();
+                        
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
+                        
+                        this.time = data.time_remaining;
+                        this.isRunning = data.is_running;
+                        this.updateDisplay();
+                        
+                    } catch (error) {
+                        console.error('Erro ao buscar estado:', error);
+                        this.handleOfflineMode();
+                    }
+                }
+                
+                async updateTimerOnServer(action, value = 0) {
+                    if (!this.isOnline) {
+                        this.handleLocalUpdate(action, value);
                         return;
                     }
-                    time--;
-                    updateDisplay();
-                }, 10); // atualiza a cada centésimo de segundo
-            }
-
-            function stopTimer() {
-                isRunning = false;
-                if (intervalId) {
-                    clearInterval(intervalId);
-                    intervalId = null;
+                    
+                    try {
+                        const response = await fetch('/api/update-timer/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': this.csrfToken,
+                            },
+                            body: JSON.stringify({
+                                action: action,
+                                value: value
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            this.time = data.time_remaining;
+                            this.isRunning = data.is_running;
+                            this.updateDisplay();
+                        } else {
+                            throw new Error(data.error || 'Erro no servidor');
+                        }
+                        
+                    } catch (error) {
+                        console.error('Erro ao atualizar timer:', error);
+                        this.handleLocalUpdate(action, value);
+                    }
                 }
-                updateDisplay();
-            }
-
-            // Funções dos botões
-            function start24() {
-                time = 2400; // 24 segundos
-                isRunning = false;
-                stopTimer();
-                updateDisplay();
-            }
-
-            function start14() {
-                time = 1400; // 14 segundos
-                isRunning = false;
-                stopTimer();
-                updateDisplay();
-            }
-
-            function add1s() {
-                time = Math.min(time + 100, 2400); // máximo 24s
-                updateDisplay();
-            }
-
-            function add01s() {
-                time = Math.min(time + 10, 2400); // máximo 24s
-                updateDisplay();
-            }
-
-            function add001s() {
-                time = Math.min(time + 1, 2400); // máximo 24s
-                updateDisplay();
-            }
-
-            function sub1s() {
-                time = Math.max(time - 100, 0); // mínimo 0s
-                updateDisplay();
-            }
-
-            function sub01s() {
-                time = Math.max(time - 10, 0); // mínimo 0s
-                updateDisplay();
-            }
-
-            function sub001s() {
-                time = Math.max(time - 1, 0); // mínimo 0s
-                updateDisplay();
-            }
-
-            function togglePlayPause() {
-                if (time <= 0) return;
                 
-                isRunning = !isRunning;
+                handleLocalUpdate(action, value) {
+                    // Fallback para modo offline
+                    switch(action) {
+                        case 'set_time':
+                            this.time = Math.max(0, Math.min(2400, value));
+                            this.isRunning = false;
+                            break;
+                        case 'add_time':
+                            this.time = Math.max(0, Math.min(2400, this.time + value));
+                            break;
+                        case 'subtract_time':
+                            this.time = Math.max(0, this.time - value);
+                            break;
+                        case 'toggle_play_pause':
+                            if (this.time > 0) {
+                                this.isRunning = !this.isRunning;
+                            }
+                            break;
+                        case 'stop':
+                            this.isRunning = false;
+                            break;
+                    }
+                    this.updateDisplay();
+                }
                 
-                if (isRunning) {
-                    startTimer();
-                } else {
-                    stopTimer();
+                handleOfflineMode() {
+                    this.isOnline = false;
+                    this.stopPeriodicUpdate();
+                    this.statusElement.textContent = "Modo offline - Funcionalidade limitada";
+                    this.statusElement.style.color = '#fbbf24';
+                }
+                
+                startPeriodicUpdate() {
+                    this.stopPeriodicUpdate();
+                    this.updateInterval = setInterval(() => {
+                        if (this.isOnline) {
+                            this.fetchTimerState();
+                        }
+                    }, 1000);
+                }
+                
+                stopPeriodicUpdate() {
+                    if (this.updateInterval) {
+                        clearInterval(this.updateInterval);
+                        this.updateInterval = null;
+                    }
+                }
+                
+                formatTime(timeInCentiseconds) {
+                    const seconds = Math.floor(timeInCentiseconds / 100);
+                    const centiseconds = timeInCentiseconds % 100;
+                    return `${seconds.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
+                }
+                
+                getTimerColor() {
+                    const timeInSeconds = this.time / 100;
+                    if (timeInSeconds > 10) return 'timer-green';
+                    if (timeInSeconds > 5) return 'timer-yellow';
+                    return 'timer-red';
+                }
+                
+                getBorderClass() {
+                    const timeInSeconds = this.time / 100;
+                    if (timeInSeconds > 10) return 'border-green';
+                    if (timeInSeconds > 5) return 'border-yellow';
+                    return 'border-red';
+                }
+                
+                updateDisplay() {
+                    // Atualizar texto do timer
+                    this.timerElement.textContent = this.formatTime(this.time);
+                    this.timerElement.className = `timer-text ${this.getTimerColor()}`;
+                    
+                    // Atualizar borda do display
+                    this.timerDisplayElement.className = `timer-display ${this.getBorderClass()}`;
+                    
+                    // Atualizar botão play/pause
+                    this.playPauseBtn.disabled = this.time === 0;
+                    this.playPauseBtn.innerHTML = this.isRunning ? this.pauseIcon : this.playIcon;
+                    
+                    // Atualizar status
+                    this.updateStatus();
+                    
+                    // Adicionar vibração em dispositivos móveis para feedback tátil
+                    if (this.time <= 500 && this.time > 0 && this.isRunning && 'vibrate' in navigator) {
+                        navigator.vibrate(100);
+                    }
+                }
+                
+                updateStatus() {
+                    if (!this.isOnline) {
+                        this.statusElement.textContent = "Modo offline - Funcionalidade limitada";
+                        this.statusElement.style.color = '#fbbf24';
+                        return;
+                    }
+                    
+                    this.statusElement.style.color = '#9ca3af';
+                    
+                    if (this.time === 0) {
+                        this.statusElement.textContent = "Pressione +24s ou +14s para começar";
+                    } else if (!this.isRunning) {
+                        this.statusElement.textContent = "Pressione play para iniciar";
+                    } else {
+                        this.statusElement.textContent = "Cronômetro ativo";
+                    }
+                }
+                
+                startLocalTimer() {
+                    this.stopLocalTimer();
+                    
+                    this.intervalId = setInterval(() => {
+                        if (this.time <= 0) {
+                            this.stopLocalTimer();
+                            this.isRunning = false;
+                            this.updateDisplay();
+                            return;
+                        }
+                        this.time--;
+                        this.updateDisplay();
+                    }, 10);
+                }
+                
+                stopLocalTimer() {
+                    if (this.intervalId) {
+                        clearInterval(this.intervalId);
+                        this.intervalId = null;
+                    }
+                }
+                
+                cleanup() {
+                    this.stopLocalTimer();
+                    this.stopPeriodicUpdate();
+                }
+                
+                // Métodos públicos para os botões
+                async setTime(seconds) {
+                    const centiseconds = seconds * 100;
+                    await this.updateTimerOnServer('set_time', centiseconds);
+                    this.stopLocalTimer();
+                }
+                
+                async addTime(seconds) {
+                    const centiseconds = Math.round(seconds * 100);
+                    await this.updateTimerOnServer('add_time', centiseconds);
+                }
+                
+                async subtractTime(seconds) {
+                    const centiseconds = Math.round(seconds * 100);
+                    await this.updateTimerOnServer('subtract_time', centiseconds);
+                }
+                
+                async togglePlayPause() {
+                    if (this.time <= 0) return;
+                    
+                    await this.updateTimerOnServer('toggle_play_pause');
+                    
+                    // Controle local do timer para responsividade
+                    if (this.isRunning) {
+                        this.startLocalTimer();
+                    } else {
+                        this.stopLocalTimer();
+                    }
+                }
+                
+                async resetTimer() {
+                    await this.updateTimerOnServer('set_time', 0);
+                    this.stopLocalTimer();
                 }
             }
-
-            // Inicializar display
-            updateDisplay();
-
-            // Cleanup ao fechar a página
-            window.addEventListener('beforeunload', () => {
-                if (intervalId) clearInterval(intervalId);
+            
+            // Inicializar quando a página carregar
+            let timer;
+            document.addEventListener('DOMContentLoaded', () => {
+                timer = new BasketballTimer();
             });
+            
+            // Funções globais para os botões (compatibilidade)
+            function setTime(seconds) {
+                if (timer) timer.setTime(seconds);
+            }
+            
+            function addTime(seconds) {
+                if (timer) timer.addTime(seconds);
+            }
+            
+            function subtractTime(seconds) {
+                if (timer) timer.subtractTime(seconds);
+            }
+            
+            function togglePlayPause() {
+                if (timer) timer.togglePlayPause();
+            }
+            
+            // Service Worker para funcionalidade offline (opcional)
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/static/sw.js').catch(err => {
+                        console.log('Service Worker registration failed');
+                    });
+                });
+            }
+            
+            // PWA - Add to Home Screen
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Mostrar botão de instalação personalizado se desejar
+                // showInstallButton();
+            });
+            
+            // Performance - Preload critical resources
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css';
+            preloadLink.as = 'style';
+            document.head.appendChild(preloadLink);
         </script>
+        
+        <!-- Meta tags adicionais para PWA -->
+        <meta name="theme-color" content="#0e1117">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Cronômetro Basquete">
+        
+        <!-- Preconnect para melhor performance -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     </body>
     </html>
     """
