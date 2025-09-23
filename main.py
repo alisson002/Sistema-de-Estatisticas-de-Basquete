@@ -10,13 +10,13 @@ st.markdown(
     <style>
     /* Aumentar fonte dos títulos das seções (🏆 Campeonatos, 🏅 Ranking Geral, etc.) */
     .st-emotion-cache-1bgz58e {
-        font-size: 24px !important;
+        font-size: 16px !important;
         font-weight: bold !important;
     }
     
     /* Aumentar fonte do "Início" e deixar em negrito */
     .st-emotion-cache-b4a1cq {
-        font-size: 24px !important;
+        font-size: 16px !important;
         font-weight: bold !important;
     }
     
@@ -37,30 +37,30 @@ st.markdown(
     .st-emotion-cache-wcsic8,
     .st-emotion-cache-1ne06is,
     .st-emotion-cache-fxurbn {
-        font-size: 24px !important;
+        font-size: 16px !important;
         font-weight: 500 !important;
     }
     
     /* Aumentar fonte dos emojis/ícones */
     .st-emotion-cache-1u1i2v4 {
-        font-size: 26px !important;
+        font-size: 18px !important;
     }
     
     /* Alternativa mais segura - usar seletores de atributos */
     [data-testid="stNavSectionHeader"] span {
-        font-size: 26px !important;
+        font-size: 18px !important;
         font-weight: bold !important;
     }
     
     /* Aumentar fonte de todos os links de navegação */
     [data-testid="stSidebarNavLink"] span[label] {
-        font-size: 24px !important;
+        font-size: 16px !important;
         font-weight: 500 !important;
     }
     
     /* Aumentar fonte de toda a área de navegação como fallback */
     [data-testid="stSidebarNav"] {
-        font-size: 24px !important;
+        font-size: 16px !important;
     }
     
     /* Ajustar espaçamento para acomodar fonte maior */

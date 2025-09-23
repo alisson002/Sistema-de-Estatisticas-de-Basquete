@@ -32,7 +32,7 @@ st.markdown(
     """
     <style>
     .nav-bar {
-        font-size: 24px;
+        font-size: 16px;
         text-align: center;
     }
     .nav-item {
@@ -47,8 +47,8 @@ st.markdown(
 st.markdown(
     f"""
     <div style="text-align: center;">
-        <img src="data:image/png;base64,{img_base64}" width="600" />
-        <img src="data:image/png;base64,{img_base64_2}" width="600" />
+        <img src="data:image/png;base64,{img_base64}" width="400" />
+        <img src="data:image/png;base64,{img_base64_2}" width="400" />
     </div>
     """,
     unsafe_allow_html=True
