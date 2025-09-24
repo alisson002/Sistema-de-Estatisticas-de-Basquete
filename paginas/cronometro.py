@@ -745,5 +745,5 @@ def main():
     components.html(html_code, height=1200, width=None, scrolling=False)
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
