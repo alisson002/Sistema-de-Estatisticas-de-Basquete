@@ -608,7 +608,7 @@ def main():
             function formatTime(timeInCentiseconds) {
                 const seconds = Math.floor(timeInCentiseconds / 100);
                 const centiseconds = timeInCentiseconds % 100;
-                return ${seconds.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')};
+                return `${seconds.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
             }
 
             // Determinar cor baseada no tempo
@@ -630,10 +630,10 @@ def main():
             // Atualizar display
             function updateDisplay() {
                 timerElement.textContent = formatTime(time);
-                timerElement.className = timer-text ${getTimerColor()};
+                timerElement.className = `timer-text ${getTimerColor()}`;
                 
                 // Atualizar borda do display
-                timerDisplayElement.className = timer-display ${getBorderClass()};
+                timerDisplayElement.className = `timer-display ${getBorderClass()}`;
                 
                 // Atualizar botão play/pause
                 playPauseBtn.disabled = time === 0;
