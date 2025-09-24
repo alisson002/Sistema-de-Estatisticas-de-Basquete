@@ -103,6 +103,7 @@ pages = {
         
         st.Page("paginas/detector_sinalizacao.py", title="🕵🏾 Detector de Sinalização"),
         st.Page("paginas/cronometro.py", title="⏱️ Cronômetro 24/14"),
+        st.Page("paginas/cronometro_responsivo.py", title="⏲️ Cronômetro 24/14 (em desenvolvimento)"),
         
     ],
     
